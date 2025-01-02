@@ -1,6 +1,7 @@
 'use strict'
 const path = require('path')
 const defaultSettings = require('./src/settings.js')
+const { error } = require('console')
 
 function resolve(dir) {
   return path.join(__dirname, dir)
@@ -31,7 +32,8 @@ module.exports = {
     open: false,
     overlay: {
       warnings: false,
-      errors: true
+      errors: false
+      // errors: true
     },
     before: require('./mock/mock-server.js')
   },

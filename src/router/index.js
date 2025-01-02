@@ -26,9 +26,119 @@ import Layout from '@/layout'
  */
 
 /**
- * constantRoutes
- * a base page that does not have permission requirements
- * all roles can be accessed
+ * 动态路由
+ * 向后端请求，根据用户权限过滤后端返回的全局路由表，动态生成路由表，然后通过addRoutes动态挂载到路由上
+ */
+// export const asyncRoutes = [
+//   {
+//     path: '/example',
+//     component: Layout,
+//     redirect: '/example/table',
+//     name: 'Example',
+//     meta: { title: '案例', icon: 'el-icon-s-help' },
+//     children: [
+//       {
+//         path: 'table',
+//         name: 'Table',
+//         component: () => import('@/views/table/index'),
+//         meta: { title: '表格', icon: 'table' }
+//       },
+//       {
+//         path: 'tree',
+//         name: 'Tree',
+//         component: () => import('@/views/tree/index'),
+//         meta: { title: '树状表格', icon: 'tree' }
+//       }
+//     ]
+//   },
+
+//   {
+//     path: '/form',
+//     component: Layout,
+//     children: [
+//       {
+//         path: 'index',
+//         name: 'Form',
+//         component: () => import('@/views/form/index'),
+//         meta: { title: '表单', icon: 'form' }
+//       }
+//     ]
+//   },
+
+//   {
+//     path: '/nested',
+//     component: Layout,
+//     redirect: '/nested/menu1',
+//     name: 'Nested',
+//     meta: {
+//       title: '多级菜单',
+//       icon: 'nested'
+//     },
+//     children: [
+//       {
+//         path: 'menu1',
+//         component: () => import('@/views/nested/menu1/index'), // Parent router-view
+//         name: 'Menu1',
+//         meta: { title: '菜单1' },
+//         children: [
+//           {
+//             path: '菜单1-1',
+//             component: () => import('@/views/nested/menu1/menu1-1'),
+//             name: 'Menu1-1',
+//             meta: { title: '菜单1-1' }
+//           },
+//           {
+//             path: 'menu1-2',
+//             component: () => import('@/views/nested/menu1/menu1-2'),
+//             name: 'Menu1-2',
+//             meta: { title: '菜单1-2' },
+//             children: [
+//               {
+//                 path: 'menu1-2-1',
+//                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
+//                 name: 'Menu1-2-1',
+//                 meta: { title: '菜单1-2-1' }
+//               },
+//               {
+//                 path: 'menu1-2-2',
+//                 component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
+//                 name: 'Menu1-2-2',
+//                 meta: { title: '菜单1-2-2' }
+//               }
+//             ]
+//           },
+//           {
+//             path: 'menu1-3',
+//             component: () => import('@/views/nested/menu1/menu1-3'),
+//             name: 'Menu1-3',
+//             meta: { title: '菜单1-3' }
+//           }
+//         ]
+//       },
+//       {
+//         path: 'menu2',
+//         component: () => import('@/views/nested/menu2/index'),
+//         name: 'Menu2',
+//         meta: { title: '菜单2' }
+//       }
+//     ]
+//   },
+
+//   {
+//     path: 'external-link',
+//     component: Layout,
+//     children: [
+//       {
+//         path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
+//         meta: { title: '外链接', icon: 'link' }
+//       }
+//     ]
+//   }
+// ]
+
+/**
+ * 静态路由
+ * 不用从后端获取，且所有角色都可以进行访问，没有访问权限要求
  */
 export const constantRoutes = [
   {
@@ -56,113 +166,8 @@ export const constantRoutes = [
     }]
   },
 
-  {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: '案例', icon: 'el-icon-s-help' },
-    children: [
-      {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: '表格', icon: 'table' }
-      },
-      {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: '树状表格', icon: 'tree' }
-      }
-    ]
-  },
-
-  {
-    path: '/form',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: '表单', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: '/nested',
-    component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
-    meta: {
-      title: '多级菜单',
-      icon: 'nested'
-    },
-    children: [
-      {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: '菜单1' },
-        children: [
-          {
-            path: '菜单1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: '菜单1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: '菜单1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: '菜单1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: '菜单1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: '菜单1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        name: 'Menu2',
-        meta: { title: '菜单2' }
-      }
-    ]
-  },
-
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: '外链接', icon: 'link' }
-      }
-    ]
-  },
-
-  // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  // // 404页必须放到所有路由最后，当没有匹配的路由资源时则跳转404页面
+  // { path: '*', redirect: '/404', hidden: true }
 ]
 
 const createRouter = () => new Router({
@@ -180,6 +185,3 @@ export function resetRouter() {
 }
 
 export default router
-
-export const asyncRoutes = [] // 为了避免控制台报警告:"export 'asyncRoutes' was not found in '@/router'
-// permission.js 文件中没有找到asyncRoutes，变量需要在vue-admin-template\src\router\index.js文件中声明,所在此文件中暂时先声明

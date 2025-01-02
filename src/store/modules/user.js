@@ -6,7 +6,9 @@ const getDefaultState = () => {
   return {
     token: getToken(),
     name: '',
-    avatar: ''
+    avatar: '',
+    roles: [],
+    menus: []
   }
 }
 
@@ -24,51 +26,63 @@ const mutations = {
   },
   SET_AVATAR: (state, avatar) => {
     state.avatar = avatar
+  },
+  SET_ROLE: (state, roles) => {
+    state.roles = roles
+  },
+  SET_MENU: (state, menus) => {
+    state.menus = menus
   }
 }
 
 const actions = {
-  // user login
+  // 用户登录
   login({ commit }, userInfo) {
-    const { username, password } = userInfo
+    const { account, password } = userInfo
     return new Promise((resolve, reject) => {
-      login({ username: username.trim(), password: password }).then(response => {
+      login({ account: account.trim(), password: password }).then(response => {
         const { data } = response
         commit('SET_TOKEN', data.token)
         setToken(data.token)
         resolve()
       }).catch(error => {
+        console.log('[src/store/user/error: ', error);
         reject(error)
       })
     })
   },
 
-  // get user info
+  // 获取用户信息
   getInfo({ commit, state }) {
     return new Promise((resolve, reject) => {
       getInfo(state.token).then(response => {
+        // console.log('===============>response: ', response);
         const { data } = response
 
         if (!data) {
-          return reject('Verification failed, please Login again.')
+          return reject('验证失效，请重新登录~')
         }
 
-        const { name, avatar } = data
+        const { name, avatar, roleNames } = data.admin
+        const { menus } = data
 
         commit('SET_NAME', name)
         commit('SET_AVATAR', avatar)
+        commit('SET_ROLE', roleNames)
+        commit('SET_MENU', menus)
         resolve(data)
+        // console.log("===================================state", state);
       }).catch(error => {
         reject(error)
       })
     })
   },
 
-  // user logout
+  // 退出登录
   logout({ commit, state }) {
     return new Promise((resolve, reject) => {
       logout(state.token).then(() => {
-        removeToken() // must remove  token  first
+        removeToken() // 先把token从store中移除，再重设路由，不然出错
         resetRouter()
         commit('RESET_STATE')
         resolve()
@@ -78,10 +92,10 @@ const actions = {
     })
   },
 
-  // remove token
+  // 重置token
   resetToken({ commit }) {
     return new Promise(resolve => {
-      removeToken() // must remove  token  first
+      removeToken() // 重置token要先把token从store中移除
       commit('RESET_STATE')
       resolve()
     })

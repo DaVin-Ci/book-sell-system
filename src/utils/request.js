@@ -6,13 +6,12 @@ import { MessageBox, Message } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 
-// create an axios instance
 const service = axios.create({
   // ！！这里会读取环境变量process.env.VUE_APP_BASE_API的值(编译构建时会被替换为真正的值)来动态设置，所以会加上初始设置的'/dev_api'前缀
   // 方便在不同环境中使用不同的api地址
   baseURL: process.env.VUE_APP_BASE_API, // 服务器地址  (url = base url + request url)
   // withCredentials: true, // send cookies when cross-domain requests
-  timeout: 5000 // 设置请求超时事件
+  timeout: 5000 // 设置请求超时时间
 })
 
 // 请求拦截器
@@ -36,19 +35,12 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
   /**
-   * If you want to get http information such as headers or status
+   * 获取HTTP信息比如Header或status
    * Please return  response => response
   */
-
-  /**
-   * Determine the request status by custom code
-   * Here is just an example
-   * You can also judge the status by HTTP Status Code
-   */
   response => {
     const res = response.data
-
-    // if the custom code is not 20000, it is judged as an error.
+    console.log("相应拦截----", res);
     if (res.code !== 20000) {
       Message({
         message: res.message || 'Error',
@@ -75,7 +67,7 @@ service.interceptors.response.use(
     }
   },
   error => {
-    console.log('err' + error) // for debug
+    console.log('响应拦截err' + error)
     Message({
       message: error.message,
       type: 'error',

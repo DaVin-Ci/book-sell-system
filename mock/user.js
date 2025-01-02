@@ -11,22 +11,22 @@ const tokens = { // 对于不同权限的用户返回不同的token
 const users = {
   'admin-token': {
     roles: ['admin'], // 用户权限
-    introduction: 'I am a super administrator', // 简介
+    introduction: 'I am a super administrator.', // 简介
     avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif', // 头像
     name: 'Super Admin' // 用户名
   },
   'editor-token': {
     roles: ['editor'],
-    introduction: 'I am an editor',
+    introduction: 'I am an ansistant.',
     avatar: 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif',
-    name: 'Normal Editor'
+    name: 'Shop Assistant'
   }
 }
 
 module.exports = [
   // user login
   {
-    url: '/vue-admin-template/user/login',
+    url: '/vue-admin-template/admin/login',
     type: 'post',
     response: config => {
       const { username } = config.body
@@ -49,7 +49,7 @@ module.exports = [
 
   // get user info
   {
-    url: '/vue-admin-template/user/info\.*',
+    url: '/vue-admin-template/admin/info\.*',
     type: 'get',
     response: config => {
       const { token } = config.query
@@ -72,7 +72,7 @@ module.exports = [
 
   // user logout
   {
-    url: '/vue-admin-template/user/logout',
+    url: '/vue-admin-template/admin/logout',
     type: 'post',
     response: _ => {
       return {
