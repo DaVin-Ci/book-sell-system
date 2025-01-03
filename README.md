@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # vue-admin-template
 
 English | [简体中文](./README-zh.md)
@@ -97,3 +98,7 @@ Modern browsers and Internet Explorer 10+.
 [MIT](https://github.com/PanJiaChen/vue-admin-template/blob/master/LICENSE) license.
 
 Copyright (c) 2017-present PanJiaChen
+=======
+# book-sell-system
+This is a simple JAVA HomeWork named book-sell-system.
+>>>>>>> ba429803d1129df0ae7bc91245fe931079e4594a
