@@ -1,4 +1,5 @@
 <template>
+  <div>addCategory</div>
 </template>
 
 <script>

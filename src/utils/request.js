@@ -40,7 +40,7 @@ service.interceptors.response.use(
   */
   response => {
     const res = response.data
-    console.log("相应拦截----", res);
+    console.log("响应拦截----", res);
     if (res.code !== 20000) {
       Message({
         message: res.message || 'Error',
