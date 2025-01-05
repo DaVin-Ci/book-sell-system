@@ -72,7 +72,7 @@
 </template>
 
 <script>
-import { getList, cancelOrder, deliverOrder } from "@/api/table";
+import { getOrderList, cancelOrder, deliverOrder } from "@/api/table";
 import { MessageBox, Message } from "element-ui";
 
 export default {
@@ -109,6 +109,11 @@ export default {
     return {
       list: null,
       listLoading: false,
+      total: 0,
+      listQuery: {
+        page: 1,
+        limit: 20,
+      },
     };
   },
   created() {
@@ -117,7 +122,7 @@ export default {
   methods: {
     fetchData() {
       this.listLoading = true;
-      getList().then((response) => {
+      getOrderList().then((response) => {
         this.list = response.data.data.records;
         this.listLoading = false;
       });

@@ -1,146 +1,158 @@
-<template>
-  <div class="mixin-components-container">
-    <el-row>
-      <el-card class="box-card">
-        <div slot="header" class="clearfix">
-          <span>Buttons</span>
-        </div>
-        <div style="margin-bottom: 50px">
-          <el-col :span="4" class="text-center">
-            <router-link class="pan-btn blue-btn" to="/documentation/index">
-              Documentation
-            </router-link>
-          </el-col>
-          <el-col :span="4" class="text-center">
-            <router-link class="pan-btn light-blue-btn" to="/icon/index">
-              Icons
-            </router-link>
-          </el-col>
-          <el-col :span="4" class="text-center">
-            <router-link class="pan-btn pink-btn" to="/excel/export-excel">
-              Excel
-            </router-link>
-          </el-col>
-          <el-col :span="4" class="text-center">
-            <router-link class="pan-btn green-btn" to="/table/complex-table">
-              Table
-            </router-link>
-          </el-col>
-          <el-col :span="4" class="text-center">
-            <router-link class="pan-btn tiffany-btn" to="/example/create">
-              Form
-            </router-link>
-          </el-col>
-          <el-col :span="4" class="text-center">
-            <router-link class="pan-btn yellow-btn" to="/theme/index">
-              Theme
-            </router-link>
-          </el-col>
-        </div>
-      </el-card>
-    </el-row>
+"bid": "b00002",
+                    "bname": "人类简史",
+                    "author": "尤瓦尔·赫拉利",
+                    "price": 45.5,
+                    "discount": 0.8,
+                    "press": "中信出版社",
+                    "edition": 2,
+                    "pageNum": 450,
+                    "wordNum": 140000,
+                    "category": null,
+                    "img": "/images/renleijianshi.jpg",
+                    "thumimg": "https://img3m6.ddimg.cn/6/8/29824746-1_l_1733992045.jpg"
+                }
 
-    <el-row :gutter="20" style="margin-top: 50px">
-      <el-col :span="6">
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <span>Material Design 的input</span>
-          </div>
-          <div style="height: 100px">
-            <el-form :model="demo" :rules="demoRules">
-              <el-form-item prop="title">
-                  标题
-                </md-input>
-              </el-form-item>
-            </el-form>
-          </div>
-        </el-card>
-      </el-col>
 
-      <el-col :span="6">
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <span>图片hover效果</span>
-          </div>
-          <div class="component-item">
-              vue-element-admin
-            </pan-thumb>
-          </div>
-        </el-card>
-      </el-col>
 
-      <el-col :span="6">
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <span>水波纹 waves v-directive</span>
-          </div>
-          <div class="component-item">
-            <el-button v-waves type="primary"> 水波纹效果 </el-button>
-          </div>
-        </el-card>
-      </el-col>
+                "data": {
+                  "bid": "b00005",
+                  "bname": "计算机网络",
+                  "author": "谢希仁",
+                  "price": 65.0,
+                  "discount": 0.8,
+                  "press": "清华大学出版社",
+                  "edition": 4,
+                  "pageNum": 500,
+                  "wordNum": 180000,
+                  "category": {
+                      "cid": "c00003",
+                      "cname": "科技",
+                      "parent": null,
+                      "description": "科学技术相关图书",
+                      "children": null
+                  },
+                  "img": "/images/computernetworks.jpg",
+                  "thumimg": "https://img3m9.ddimg.cn/0/0/29827809-1_l_1734398178.jpg"
+              }
 
-      <el-col :span="6">
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <span>hover text</span>
-          </div>
-          <div class="component-item">
-            <mallki class-name="mallki-text" text="vue-element-admin" />
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
 
-    <el-row :gutter="20" style="margin-top: 50px">
-      <el-col :span="8">
-        <el-card class="box-card">
-          <div slot="header" class="clearfix">
-            <span>Share</span>
-          </div>
-          <div class="component-item" style="height: 420px"></div>
-        </el-card>
-      </el-col>
-    </el-row>
+              {
+                value: "zujian",
+                label: "组件",
+                children: [
+                  {
+                    value: "basic",
+                    label: "Basic",
+                    children: null
+                  }
+                ]
+              }
+
+
+
+              <template>
+  <div class="app-container">
+    <el-form ref="form" :model="form" label-width="120px">
+      <el-form-item label="图书编号">
+        <span>1111</span>
+      </el-form-item>
+      <el-form-item label="图书名称">
+        <el-input v-model="form.name" />
+      </el-form-item>
+      <el-form-item label="作者">
+        <el-input v-model="form.name" />
+      </el-form-item>
+      <el-row :gutter="20">
+        <el-col :span="11" class="text-center">
+          <el-form-item label="定价">
+            <el-input v-model="form.name" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="11" :offset="2" class="text-center">
+          <el-form-item label="折扣">
+            <el-input v-model="form.name" />
+          </el-form-item>
+        </el-col>
+      </el-row>
+
+      <el-form-item label="出版社">
+        <el-input v-model="form.name" />
+      </el-form-item>
+      <el-row :gutter="20">
+        <el-col :span="8" class="text-center">
+          <el-form-item label="版次">
+            <el-input v-model="form.name" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="8" class="text-center">
+          <el-form-item label="总页数">
+            <el-input v-model="form.name" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="8" class="text-center">
+          <el-form-item label="总字数">
+            <el-input v-model="form.name" />
+          </el-form-item>
+        </el-col>
+      </el-row>
+      <el-row :gutter="20">
+        <el-col :span="11" class="text-center">
+          <el-form-item label="封面地址">
+            <el-input v-model="form.name" />
+          </el-form-item>
+        </el-col>
+        <el-col :span="11" :offset="2" class="text-center">
+          <el-form-item label="缩略图地址">
+            <el-input v-model="form.name" />
+          </el-form-item>
+        </el-col>
+      </el-row>
+
+      <el-form-item label="Activity form">
+        <el-input v-model="form.desc" type="textarea" />
+      </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="onSubmit">Create</el-button>
+        <el-button @click="onCancel">Cancel</el-button>
+      </el-form-item>
+    </el-form>
   </div>
 </template>
-
-<script>
-import waves from "@/directive/waves/index.js"; // 水波纹指令
-
+              
+              <script>
 export default {
-  name: "ComponentMixinDemo",
-  directives: {
-    waves,
-  },
   data() {
-    const validate = (rule, value, callback) => {
-      if (value.length !== 6) {
-        callback(new Error("请输入六个字符"));
-      } else {
-        callback();
-      }
-    };
     return {
-      demo: {
-        title: "",
+      form: {
+        name: "",
+        region: "",
+        date1: "",
+        date2: "",
+        delivery: false,
+        type: [],
+        resource: "",
+        desc: "",
       },
-      demoRules: {
-        title: [{ required: true, trigger: "change", validator: validate }],
-      },
-      articleList: [],
     };
+  },
+  methods: {
+    onSubmit() {
+      this.$message("submit!");
+    },
+    onCancel() {
+      this.$message({
+        message: "cancel!",
+        type: "warning",
+      });
+    },
   },
 };
 </script>
-
-<style scoped>
-.mixin-components-container {
-  background-color: #f0f2f5;
-  padding: 30px;
-  min-height: calc(100vh - 84px);
-}
-.component-item {
-  min-height: 100px;
+              
+              <style scoped>
+.line {
+  text-align: center;
 }
 </style>
+              
+              
